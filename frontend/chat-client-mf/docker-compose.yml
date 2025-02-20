@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  chat_mf:
+    container_name: chat_module
+    build: ./chat-mf
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./chat-mf:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: ["npm", "start"]
+
+  login_mf:
+    build: ./login-mf
+    container_name: login_module
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./login-mf:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: ["npm", "start"]
